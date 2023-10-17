@@ -3,6 +3,8 @@ package middleware
 import (
 	"context"
 	"net/http"
+
+	"github.com/rs/cors"
 )
 
 func AuthenticationMiddleware(next http.Handler) http.Handler {
@@ -18,4 +20,15 @@ func AuthenticationMiddleware(next http.Handler) http.Handler {
 		next.ServeHTTP(w, r.WithContext(ctx))
 	})
 
+}
+
+func CorsMiddleware(next http.Handler) http.Handler {
+	// Create a CORS middleware with your desired options
+	corsHandler := cors.New(cors.Options{
+		AllowedOrigins: []string{"*"}, // Change this to allow specific origins
+		AllowedMethods: []string{"GET", "POST", "OPTIONS"},
+		AllowedHeaders: []string{"*"},
+	})
+
+	return corsHandler.Handler(next)
 }
