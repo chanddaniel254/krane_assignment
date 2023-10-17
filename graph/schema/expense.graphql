@@ -1,0 +1,26 @@
+type Expense{
+  id: ID!
+   item_name:String!
+   cost:String!
+   description:String!
+   category:String!
+   event_id:Event!
+}
+
+input NewExpense{
+  item_name:String!
+   cost:String!
+   description:String!
+   category:String!
+   event_id:String!
+}
+
+
+extend type Query{
+  getExpenseById(id:ID!):Expense! 
+  getExpensesByEventId(event_id:ID!):[Expense!]!
+}
+
+extend type Mutation{
+  createExpense(input: NewExpense!): Expense!
+}

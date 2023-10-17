@@ -1,0 +1,24 @@
+type Organizer{
+  id: ID!
+  event_id:Event!
+  user_id:User!
+  role:String!
+}
+input NewOrganizer{
+  event_id:String!
+  user_id:String!
+  role:String!
+}
+
+extend type Query{
+ 
+  getOrganizersByEventId(event_id:ID!):[Organizer!]!
+
+}
+
+extend type Mutation{
+
+  createOrganizer(input: NewOrganizer!): Organizer!
+  removeOrganizer(input:ID!):String!
+ 
+}

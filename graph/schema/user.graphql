@@ -1,0 +1,32 @@
+
+type User{
+  id:ID!
+  name:String!
+  email:String!
+  password:String!
+  phoneno:String!
+}
+
+input NewUser{
+    name:String!
+  email:String!
+  password:String!
+  phoneno:String!
+}
+
+input LoginUser{
+  email:String!
+  password:String!
+}
+type LoginResponse{
+  token : String!,
+}
+extend type Query{
+  users: [User!]! 
+  user(id: ID!): User! 
+}
+extend type Mutation{
+  register(input: NewUser!): User!
+  login(input: LoginUser!): LoginResponse!
+}
+

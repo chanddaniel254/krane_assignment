@@ -1,0 +1,28 @@
+type Session{
+  id: ID!
+   event_id:Event!
+   name:String!
+   start_time:String!
+   end_time:String
+}
+input NewSession{
+   event_id:String!
+   name:String!
+   start_time:String!
+   end_time:String
+}
+input ScheduleSession{
+  start_time:String!
+  end_time:String!
+  name:String!
+  id:String!
+}
+extend type Query{
+
+  getSessionsByEventId(event_id:ID!):[Session!]!
+ 
+}
+extend type Mutation{
+  createSession(input: NewSession!): Session!
+  editEventSession(input:ScheduleSession!):Session!
+}

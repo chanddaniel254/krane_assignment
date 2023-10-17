@@ -1,0 +1,32 @@
+type Event{
+  id: ID!
+  name:String!
+  start_date:String!
+  end_date:String!
+  location:String!
+}
+
+input NewEvent{
+  name:String!
+  start_date:String!
+  end_date:String!
+   location:String!
+}
+
+type Query{
+  events: [Event!]!
+}
+
+input ScheduleEvent{
+  start_date:String!
+  end_date:String!
+  location:String!
+  event_id:String!
+}
+type Mutation{
+  createEvent(input:NewEvent!): Event! 
+  editEventSchedule(input: ScheduleEvent! ): Event!
+}
+
+
+
